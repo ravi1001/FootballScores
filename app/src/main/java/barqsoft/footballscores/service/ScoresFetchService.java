@@ -28,17 +28,22 @@ import barqsoft.footballscores.R;
 /**
  * Created by yehya khaled on 3/2/2015.
  */
-public class myFetchService extends IntentService
+public class ScoresFetchService extends IntentService
 {
-    public static final String LOG_TAG = "myFetchService";
-    public myFetchService()
+    public static final String LOG_TAG = ScoresFetchService.class.getSimpleName();
+
+    // Intent action notifying that the data has been updated.
+    public static final String ACTION_DATA_UPDATED = "barqsoft.footballscores.service.ACTION_DATA_UPDATED";
+
+    public ScoresFetchService()
     {
-        super("myFetchService");
+        super("ScoresFetchService");
     }
 
     @Override
     protected void onHandleIntent(Intent intent)
     {
+        Log.d(LOG_TAG, "onHandleIntent()");
         getData("n2");
         getData("p2");
 
@@ -266,6 +271,10 @@ public class myFetchService extends IntentService
                     DatabaseContract.BASE_CONTENT_URI,insert_data);
 
             //Log.v(LOG_TAG,"Succesfully Inserted : " + String.valueOf(inserted_data));
+
+            // Send local broadcast notifying that the data has been updated.
+            sendDataUpdatedBroadcast();
+
         }
         catch (JSONException e)
         {
@@ -273,5 +282,20 @@ public class myFetchService extends IntentService
         }
 
     }
+
+    // Sends a local broadcast notifying that the data has been updated.
+    private void sendDataUpdatedBroadcast() {
+        // Get the application context.
+        Context context = getApplicationContext();
+
+        // Create intent to send only to components within the app.
+        Intent dataUpdatedIntent = new Intent()
+                .setAction(ACTION_DATA_UPDATED)
+                .setPackage(context.getPackageName());
+
+        // Send local broadcast.
+        context.sendBroadcast(dataUpdatedIntent);
+    }
+
 }
 

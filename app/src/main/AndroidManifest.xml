@@ -6,6 +6,8 @@
         android:name="android.permission.INTERNET"
         android:maxSdkVersion="22" />
 
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
@@ -33,7 +35,27 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="barqsoft.footballscores.MainActivity" />
         </activity>
-        <service android:name=".service.myFetchService" />
+        <service android:name=".service.ScoresFetchService" />
+
+        <receiver android:name=".widget.ScoresWidgetProvider" >
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="barqsoft.footballscores.service.ACTION_DATA_UPDATED" />
+                <action android:name="android.intent.action.TIMEZONE_CHANGED" />
+                <action android:name="android.intent.action.TIME_SET" />
+                <action android:name="android.intent.action.DATE_CHANGED" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/widget_scores_info" />
+        </receiver>
+
+        <service
+            android:name=".widget.ScoresWidgetRemoteViewsService"
+            android:permission="android.permission.BIND_REMOTEVIEWS"/>
+
     </application>
 
 </manifest>
