@@ -167,6 +167,25 @@ public class ScoresWidgetRemoteViewsFactory implements RemoteViewsService.Remote
         remoteViews.setTextViewText(R.id.widget_match_score, score);
         remoteViews.setTextViewText(R.id.widget_match_time, time);
 
+        // Check if the platform version is level 15 or higher. Only if it is, then
+        // set the content descriptions for the remote views.
+        if(Build.VERSION.SDK_INT >= 15) {
+            remoteViews.setContentDescription(R.id.widget_home_team,
+                    mContext.getString(R.string.a11y_home_name, homeTeam));
+            remoteViews.setContentDescription(R.id.widget_away_team,
+                    mContext.getString(R.string.a11y_away_name, awayTeam));
+            remoteViews.setContentDescription(R.id.widget_match_time,
+                    mContext.getString(R.string.a11y_match_time, time));
+            // Check if match score is available and set content description accordingly.
+            if(score.equals(mContext.getString(R.string.dash))) {
+                remoteViews.setContentDescription(R.id.widget_match_score,
+                        mContext.getString(R.string.a11y_no_score));
+            } else {
+                remoteViews.setContentDescription(R.id.widget_match_score,
+                        mContext.getString(R.string.a11y_match_score, score));
+            }
+        }
+
         // Create and set the fill in intent.
         final Intent fillInIntent = new Intent();
         fillInIntent.putExtra(EXTRA_MATCH_ID, matchId);
