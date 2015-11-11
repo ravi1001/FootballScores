@@ -1,5 +1,10 @@
 package barqsoft.footballscores;
 
+import android.annotation.TargetApi;
+import android.content.Context;
+import android.os.Build;
+import android.view.View;
+
 /**
  * Created by yehya khaled on 3/3/2015.
  */
@@ -83,5 +88,30 @@ public class Utilities
             case "Stoke City FC" : return R.drawable.stoke_city;
             default: return R.drawable.no_icon;
         }
+    }
+
+    /**
+     * Checks if the layout direction is RTL.
+     */
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public static boolean isLayoutDirectionRtl(View view) {
+        return view.getLayoutDirection() == View.LAYOUT_DIRECTION_RTL;
+    }
+
+    /**
+     * Reverses the adapter position to support RTL.
+     */
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public static int reversePositionForRtl(int position, int total)
+    {
+        return total - position - 1; // Thanks to Udacity student josen for the input.
+    }
+
+    /**
+     * Checks and returns if device is in rtl mode.
+     */
+    @TargetApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
+    public static boolean isRtl(Context context) {
+        return context.getResources().getBoolean(R.bool.is_right_to_left);
     }
 }

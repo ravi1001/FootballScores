@@ -1,6 +1,7 @@
 package barqsoft.footballscores;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -46,6 +47,13 @@ public class PagerFragment extends Fragment
         @Override
         public Fragment getItem(int i)
         {
+            // Get the current api version and reverse the adapter position if it's
+            // jelly beans or higher AND layout direction is RTL.
+            int currentApiVersion = Build.VERSION.SDK_INT;
+            if(currentApiVersion >= Build.VERSION_CODES.JELLY_BEAN_MR1 &&
+                    Utilities.isLayoutDirectionRtl(mPagerHandler)) {
+                i = Utilities.reversePositionForRtl(i, getCount());
+            }
             return viewFragments[i];
         }
 
@@ -63,6 +71,14 @@ public class PagerFragment extends Fragment
         @Override
         public CharSequence getPageTitle(int position)
         {
+            // Get the current api version and reverse the adapter position if it's
+            // jelly beans or higher AND layout direction is RTL.
+            int currentApiVersion = Build.VERSION.SDK_INT;
+            if(currentApiVersion >= Build.VERSION_CODES.JELLY_BEAN_MR1 &&
+                    Utilities.isLayoutDirectionRtl(mPagerHandler)) {
+                position = Utilities.reversePositionForRtl(position, getCount());
+            }
+
             return getDayName(getActivity(),System.currentTimeMillis()+((position-2)*86400000));
         }
         public String getDayName(Context context, long dateInMillis) {

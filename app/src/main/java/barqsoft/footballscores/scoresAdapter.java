@@ -3,6 +3,7 @@ package barqsoft.footballscores;
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
+import android.os.Build;
 import android.support.v4.widget.CursorAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,9 +55,18 @@ public class ScoresAdapter extends CursorAdapter
         mHolder.date.setText(cursor.getString(COL_MATCHTIME));
         mHolder.date.setContentDescription(context.getString(R.string.a11y_match_time,
                 cursor.getString(COL_MATCHTIME)));
-        String matchScore = Utilities.getScores(cursor.getInt(COL_HOME_GOALS),
-                cursor.getInt(COL_AWAY_GOALS));
+
+        String matchScore;
+        // Adjust score direction based on whether layout direction is rtl.
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && Utilities.isRtl(context)) {
+            matchScore = Utilities.getScores(cursor.getInt(COL_AWAY_GOALS),
+                    cursor.getInt(COL_HOME_GOALS));
+        } else {
+            matchScore = Utilities.getScores(cursor.getInt(COL_HOME_GOALS),
+                    cursor.getInt(COL_AWAY_GOALS));
+        }
         mHolder.score.setText(matchScore);
+
         // Check if match score is available and set content description accordingly.
         if(matchScore.equals(context.getString(R.string.dash))) {
             mHolder.score.setContentDescription(context.getString(R.string.a11y_no_score));
@@ -66,10 +76,12 @@ public class ScoresAdapter extends CursorAdapter
         mHolder.match_id = cursor.getDouble(COL_ID);
         mHolder.home_crest.setImageResource(Utilities.getTeamCrestByTeamName(
                 cursor.getString(COL_HOME)));
-        mHolder.home_crest.setContentDescription(null);
+        mHolder.home_crest.setContentDescription(context.getString(R.string.a11y_home_crest,
+                cursor.getString(COL_HOME)));
         mHolder.away_crest.setImageResource(Utilities.getTeamCrestByTeamName(
                 cursor.getString(COL_AWAY)));
-        mHolder.away_crest.setContentDescription(null);
+        mHolder.away_crest.setContentDescription(context.getString(R.string.a11y_away_crest,
+                cursor.getString(COL_AWAY)));
         //Log.v(FetchScoreTask.LOG_TAG,mHolder.home_name.getText() + " Vs. " + mHolder.away_name.getText() +" id " + String.valueOf(mHolder.match_id));
         //Log.v(FetchScoreTask.LOG_TAG,String.valueOf(detail_match_id));
         LayoutInflater vi = (LayoutInflater) context.getApplicationContext()

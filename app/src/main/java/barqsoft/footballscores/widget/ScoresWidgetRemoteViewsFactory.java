@@ -158,8 +158,13 @@ public class ScoresWidgetRemoteViewsFactory implements RemoteViewsService.Remote
         int homeGoals = mCursor.getInt(INDEX_HOME_GOALS);
         int awayGoals = mCursor.getInt(INDEX_AWAY_GOALS);
 
-        // Combine the goals from both teams to form the score.
-        String score = Utilities.getScores(homeGoals, awayGoals);
+        String score;
+        // Adjust score direction based on whether layout direction is rtl.
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && Utilities.isRtl(mContext)) {
+            score = Utilities.getScores(awayGoals, homeGoals);
+        } else {
+            score = Utilities.getScores(homeGoals, awayGoals);
+        }
 
         // Set the match data onto the list item views.
         remoteViews.setTextViewText(R.id.widget_home_team, homeTeam);

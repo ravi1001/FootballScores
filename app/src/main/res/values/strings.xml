@@ -43,9 +43,9 @@
 
     <!-- Accessibility -->
     <string name="a11y_home_name">Home team: <xliff:g id="home_name">%1$s</xliff:g></string>
-    <string name="a11y_home_crest">Home team crest</string>
+    <string name="a11y_home_crest">Home crest: <xliff:g id="home_name">%1$s</xliff:g></string>
     <string name="a11y_away_name">Away team: <xliff:g id="away_name">%1$s</xliff:g></string>
-    <string name="a11y_away_crest">Away team crest</string>
+    <string name="a11y_away_crest">Away crest: <xliff:g id="home_name">%1$s</xliff:g></string>
     <string name="a11y_match_time">Match time: <xliff:g id="match_time">%1$s</xliff:g></string>
     <string name="a11y_match_score">Match score: <xliff:g id="match_score">%1$s</xliff:g></string>
     <string name="a11y_no_score">Match score not available</string>
