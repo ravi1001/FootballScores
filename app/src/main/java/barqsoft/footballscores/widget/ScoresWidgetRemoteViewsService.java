@@ -22,6 +22,8 @@ import android.os.Build;
 import android.util.Log;
 import android.widget.RemoteViewsService;
 
+import barqsoft.footballscores.R;
+
 /**
  * Provides the data for the scrollable football scores collection widget.
  */
@@ -32,7 +34,7 @@ public class ScoresWidgetRemoteViewsService extends RemoteViewsService {
 
     @Override
     public RemoteViewsFactory onGetViewFactory(Intent intent) {
-        Log.d(LOG_TAG, "onGetViewFactory()");
+        Log.d(LOG_TAG, getString(R.string.on_get_view_factory));
 
         // Create the remote views factory object.
         ScoresWidgetRemoteViewsFactory scoresWidgetRemoteViewsFactory = new

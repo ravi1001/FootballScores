@@ -8,12 +8,7 @@
     <string name="today">Today</string>
     <string name="yesterday">Yesterday</string>
     <string name="tomorrow">Tomorrow</string>
-    <string name="champions_league">UEFA Champions League</string>
-    <string name="bundesliga">Bundesliga</string>
-    <string name="premierleague">Premier League</string>
-    <string name="primeradivison">Primera Division</string>
-    <string name="seriaa">Serie A</string>
-    <string name="matchday_text">Match day</string>
+    <string name="matchday_text">Match day :</string>
     <string name="group_stage_text">Group stages</string>
     <string name="first_knockout_round">First knockout round</string>
     <string name="quarter_final">Quarter Final</string>
@@ -37,10 +32,6 @@
     <string name="dummy_data">{\"timeFrameStart\":\"2015-06-18\",\"timeFrameEnd\":\"2015-06-19\",\"count\":1,\"fixtures\":[{\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140514\"},\"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},\"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},\"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},\"date\":\"2015-06-19T22:00:00Z\",\"status\":\"FINISHED\",\"matchday\":42,\"homeTeamName\":\"TESTING1\",\"awayTeamName\":\"TESTING2\",\"result\":{\"goalsHomeTeam\":2,\"goalsAwayTeam\":4}},{\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140514\"},\"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},\"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},\"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},\"date\":\"2015-06-19T22:00:00Z\",\"status\":\"FINISHED\",\"matchday\":42,\"homeTeamName\":\"TESTING1\",\"awayTeamName\":\"TESTING2\",\"result\":{\"goalsHomeTeam\":2,\"goalsAwayTeam\":4}},{\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140514\"},\"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},\"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},\"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},\"date\":\"2015-06-19T22:00:00Z\",\"status\":\"FINISHED\",\"matchday\":42,\"homeTeamName\":\"TESTING1\",\"awayTeamName\":\"TESTING2\",\"result\":{\"goalsHomeTeam\":2,\"goalsAwayTeam\":4}},{\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140514\"},\"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},\"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},\"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},\"date\":\"2015-06-19T22:00:00Z\",\"status\":\"FINISHED\",\"matchday\":42,\"homeTeamName\":\"TESTING1\",\"awayTeamName\":\"TESTING2\",\"result\":{\"goalsHomeTeam\":2,\"goalsAwayTeam\":4}},{\"_links\":{\"self\":{\"href\":\"http://api.football-data.org/alpha/fixtures/140514\"},\"soccerseason\":{\"href\":\"http://api.football-data.org/alpha/soccerseasons/357\"},\"homeTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/275\"},\"awayTeam\":{\"href\":\"http://api.football-data.org/alpha/teams/263\"}},\"date\":\"2015-06-19T22:00:00Z\",\"status\":\"FINISHED\",\"matchday\":42,\"homeTeamName\":\"TESTING1\",\"awayTeamName\":\"TESTING2\",\"result\":{\"goalsHomeTeam\":2,\"goalsAwayTeam\":4}}]}</string>
     <string name="empty_scores_list">No Football Scores Information Available</string>
 
-
-    <string name="dash" translatable="false">" - "</string>
-
-
     <!-- Accessibility -->
     <string name="a11y_home_name">Home team: <xliff:g id="home_name">%1$s</xliff:g></string>
     <string name="a11y_home_crest">Home crest: <xliff:g id="home_name">%1$s</xliff:g></string>
@@ -53,7 +44,109 @@
     <string name="a11y_league">League: <xliff:g id="league">%1$s</xliff:g></string>
     <string name="a11y_share_button">Share</string>
 
+    <!-- Log strings -->
+    <string name="on_update">onUpdate()</string>
+    <string name="on_receive">onReceive(): </string>
+    <string name="on_create">onCreate()</string>
+    <string name="on_create_item_clicked">onCreate(): ACTION_ITEM_CLICKED</string>
+    <string name="on_create_match_id">onCreate(): Match Id: </string>
+    <string name="on_create_position">onCreate(): Position: </string>
+    <string name="on_handle_intent">onHandleIntent()</string>
 
+    <string name="on_destroy">onDestroy()</string>
+    <string name="on_load_finished">onLoadFinished()</string>
+    <string name="on_load_finished_item_clicked">onLoadFinished(): Widget item clicked</string>
+    <string name="on_dataset_changed">onDataSetChanged()</string>
+    <string name="get_view_at">getViewAt()</string>
+    <string name="on_get_view_factory">onGetViewFactory()</string>
+    <string name="will_save">will save</string>
+    <string name="will_retrieve">will retrieve</string>
+    <string name="fragment">fragment: </string>
+    <string name="selected_id">selected id: </string>
+    <string name="pager_current">Pager_Current</string>
+    <string name="selected_match">Selected_match</string>
+    <string name="my_main">my_main</string>
+    <string name="scores_hashtag">#Football_Scores</string>
+    <string name="unknown_uri">Unknown uri :</string>
+    <string name="error">Error :</string>
+    <string name="error_closing_stream">Error closing stream</string>
+    <string name="error_connecting_to_server">Error : Could not connect to server</string>
 
+    <!-- Non translatable strings -->
+    <string name="timeframe_n2" translatable="false">n2</string>
+    <string name="timeframe_p2" translatable="false">p2</string>
+    <string name="query_base_url" translatable="false">http://api.football-data.org/alpha/fixtures</string>
+    <string name="query_timeframe" translatable="false">timeFrame</string>
+    <string name="get_request" translatable="false">GET</string>
+    <string name="x_auth_token" translatable="false">X-Auth-Token</string>
+    <string name="fixtures" translatable="false">fixtures</string>
+    <string name="season_link" translatable="false">http://api.football-data.org/alpha/soccerseasons/</string>
+    <string name="match_link" translatable="false">http://api.football-data.org/alpha/fixtures/</string>
+    <string name="links" translatable="false">_links</string>
+    <string name="soccer_season" translatable="false">soccerseason</string>
+    <string name="self" translatable="false">self</string>
+    <string name="date" translatable="false">date</string>
+    <string name="home_team" translatable="false">homeTeamName</string>
+    <string name="away_team" translatable="false">awayTeamName</string>
+    <string name="result" translatable="false">result</string>
+    <string name="home_goals" translatable="false">goalsHomeTeam</string>
+    <string name="away_goals" translatable="false">goalsAwayTeam</string>
+    <string name="match_day" translatable="false">matchday</string>
+    <string name="href" translatable="false">href</string>
+    <string name="t" translatable="false">T</string>
+    <string name="z" translatable="false">Z</string>
+    <!-- Date format -->
+    <string name="date_format" translatable="false">"yyyy-MM-dd"</string>
+    <!-- Date format EEEE -->
+    <string name="date_format_eeee" translatable="false">"EEEE"</string>
+    <string name="date_time_format_with_secs" translatable="false">yyyy-MM-ddHH:mm:ss</string>
+    <string name="date_time_format" translatable="false">yyyy-MM-dd:HH:mm</string>
+    <string name="utc_timezone" translatable="false">UTC</string>
+    <string name="colon" translatable="false">:</string>
+    <string name="dash" translatable="false">" - "</string>
+    <string name="intent_type_text_plain" translatable="false">text/plain</string>
+    <!-- Intent action notifying that the data has been updated -->
+    <string name="action_data_updated" translatable="false">barqsoft.footballscores.service.ACTION_DATA_UPDATED</string>
+    <!-- Intent action notifying that the collection widget item has been clicked -->
+    <string name="action_item_clicked" translatable="false">barqsoft.footballscores.widget.ACTION_ITEM_CLICKED</string>
+    <!-- Intent extra key to the match id -->
+    <string name="extra_match_id" translatable="false">barqsoft.footballscores.widget.EXTRA_MATCH_ID</string>
+    <!-- Intent extra key to the widget list item position -->
+    <string name="extra_item_position" translatable="false">barqsoft.footballscores.widget.EXTRA_ITEM_POSITION</string>
+    <!-- Ascending sort order for the query -->
+    <string name="ascending_sort_order" translatable="false">" ASC"</string>
+
+    <!-- Leagues -->
+    <string name="champions_league">UEFA Champions League</string>
+    <string name="bundesliga">Bundesliga</string>
+    <string name="premierleague">Premier League</string>
+    <string name="primeradivison">Primera Division</string>
+    <string name="seriaa">Serie A</string>
+    <string name="unknown_league">Unknown League</string>
+
+    <!-- League codes, non translatable -->
+    <string name="bundesliga1" translatable="false">394</string>
+    <string name="bundesliga2" translatable="false">395</string>
+    <string name="ligue1" translatable="false">396</string>
+    <string name="ligue2" translatable="false">397</string>
+    <string name="premier_league" translatable="false">398</string>
+    <string name="primera_division" translatable="false">399</string>
+    <string name="segunda_division" translatable="false">400</string>
+    <string name="serie_a" translatable="false">401</string>
+    <string name="primera_liga" translatable="false">402</string>
+    <string name="bundesliga3" translatable="false">403</string>
+    <string name="eredivisie" translatable="false">404</string>
+
+    <!-- Team names, non translatable -->
+    <string name="arsenal_london_fc" translatable="false">Arsenal London FC</string>
+    <string name="manchester_united_fc" translatable="false">Manchester United FC</string>
+    <string name="swansea_city" translatable="false">Swansea City</string>
+    <string name="leicester_city" translatable="false">Leicester City</string>
+    <string name="everton_fc" translatable="false">Everton FC</string>
+    <string name="west_ham_united_fc" translatable="false">West Ham United FC</string>
+    <string name="tottenham_hotspur_fc" translatable="false">Tottenham Hotspur FC</string>
+    <string name="west_bromwich_albion" translatable="false">West Bromwich Albion</string>
+    <string name="sunderland_afc" translatable="false">Sunderland AFC</string>
+    <string name="stoke_city_fc" translatable="false">Stoke City FC</string>
 
 </resources>

@@ -42,12 +42,9 @@ public class ScoresWidgetProvider extends AppWidgetProvider {
 
     private final String LOG_TAG = ScoresWidgetProvider.class.getSimpleName();
 
-    // Intent action notifying that the collection widget item has been clicked.
-    public static final String ACTION_ITEM_CLICKED = "barqsoft.footballscores.widget.ACTION_ITEM_CLICKED";
-
     @Override
     public void onUpdate(Context context, AppWidgetManager appWidgetManager, int[] appWidgetIds) {
-        Log.d(LOG_TAG, "onUpdate()");
+        Log.d(LOG_TAG, context.getString(R.string.on_update));
 
         // Update each app widget instance with remote view and corresponding remote adapter.
         for(int appWidgetId : appWidgetIds) {
@@ -75,7 +72,7 @@ public class ScoresWidgetProvider extends AppWidgetProvider {
 
             // Create and add the list item click pending intent template.
             Intent listItemClickIntent = new Intent(context, MainActivity.class);
-            listItemClickIntent.setAction(ACTION_ITEM_CLICKED)
+            listItemClickIntent.setAction(context.getString(R.string.action_item_clicked))
                     .setData(Uri.parse(listItemClickIntent.toUri(Intent.URI_INTENT_SCHEME)));
 
             // Set the pending intent template.
@@ -100,12 +97,11 @@ public class ScoresWidgetProvider extends AppWidgetProvider {
 
         // Get the intent action.
         String action = intent.getAction();
-
-        Log.d(LOG_TAG, "onReceive(): " + action);
+        Log.d(LOG_TAG, context.getString(R.string.on_receive) + action);
 
         // Notify widgets to refresh their views if any of the following events have occurred:
         // data has been updated, date has changed, time was set/reset, timezone changed.
-        if(ScoresFetchService.ACTION_DATA_UPDATED.equals(action) ||
+        if(context.getString(R.string.action_data_updated).equals(action) ||
                 Intent.ACTION_DATE_CHANGED.equals(action) ||
                 Intent.ACTION_TIMEZONE_CHANGED.equals(action) ||
                 Intent.ACTION_TIME_CHANGED.equals(action)) {

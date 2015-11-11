@@ -30,7 +30,7 @@ import android.widget.RemoteViewsService;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import barqsoft.footballscores.DatabaseContract;
+import barqsoft.footballscores.ScoresContract;
 import barqsoft.footballscores.R;
 import barqsoft.footballscores.Utilities;
 
@@ -44,13 +44,13 @@ public class ScoresWidgetRemoteViewsFactory implements RemoteViewsService.Remote
 
     // Projection for getting scores data from the scores table.
     private static final String[] SCORES_PROJECTION = {
-            DatabaseContract.scores_table.MATCH_ID,
-            DatabaseContract.scores_table.DATE_COL,
-            DatabaseContract.scores_table.TIME_COL,
-            DatabaseContract.scores_table.HOME_COL,
-            DatabaseContract.scores_table.AWAY_COL,
-            DatabaseContract.scores_table.HOME_GOALS_COL,
-            DatabaseContract.scores_table.AWAY_GOALS_COL
+            ScoresContract.scores_table.MATCH_ID,
+            ScoresContract.scores_table.DATE_COL,
+            ScoresContract.scores_table.TIME_COL,
+            ScoresContract.scores_table.HOME_COL,
+            ScoresContract.scores_table.AWAY_COL,
+            ScoresContract.scores_table.HOME_GOALS_COL,
+            ScoresContract.scores_table.AWAY_GOALS_COL
     };
 
     // Column indices matching the projection.
@@ -62,18 +62,6 @@ public class ScoresWidgetRemoteViewsFactory implements RemoteViewsService.Remote
     private static final int INDEX_HOME_GOALS = 5;
     private static final int INDEX_AWAY_GOALS = 6;
 
-    // Match id key.
-    public static final String EXTRA_MATCH_ID = "barqsoft.footballscores.widget.EXTRA_MATCH_ID";
-    // Widget list item position.
-    public static final String EXTRA_ITEM_POSITION = "barqsoft.footballscores.widget.EXTRA_ITEM_POSITION";
-    // Sort order for the query.
-    private static final String SORT_ORDER = " ASC";
-    // Date format.
-    private static final String DATE_FORMAT = "yyyy-MM-dd";
-    // Invalid goal count.
-    private static final String INVALID_COUNT = "-1";
-    // Zero goal count.
-    private static final String ZERO_COUNT = "0";
     // Store the cursor containing football scores data.
     private Cursor mCursor = null;
     // Store the context.
@@ -88,12 +76,12 @@ public class ScoresWidgetRemoteViewsFactory implements RemoteViewsService.Remote
 
     @Override
     public void onCreate() {
-        Log.d(LOG_TAG, "onCreate()");
+        Log.d(LOG_TAG, mContext.getString(R.string.on_create));
     }
 
     @Override
     public void onDestroy() {
-        Log.d(LOG_TAG, "onDestroy()");
+        Log.d(LOG_TAG, mContext.getString(R.string.on_destroy));
 
         // Check and close the cursor.
         if(mCursor != null) {
@@ -121,8 +109,6 @@ public class ScoresWidgetRemoteViewsFactory implements RemoteViewsService.Remote
 
     @Override
     public RemoteViews getLoadingView() {
-        Log.d(LOG_TAG, "getLoadingView");
-
         return new RemoteViews(mContext.getPackageName(), R.layout.widget_scores_list_item);
     }
 
@@ -138,7 +124,7 @@ public class ScoresWidgetRemoteViewsFactory implements RemoteViewsService.Remote
 
     @Override
     public RemoteViews getViewAt(int i) {
-        Log.d(LOG_TAG,"getViewAt()");
+        Log.d(LOG_TAG, mContext.getString(R.string.get_view_at));
 
         // Check if it's a valid position and cursor exists.
         if(i == AdapterView.INVALID_POSITION || mCursor == null || !mCursor.moveToPosition(i)) {
@@ -161,9 +147,9 @@ public class ScoresWidgetRemoteViewsFactory implements RemoteViewsService.Remote
         String score;
         // Adjust score direction based on whether layout direction is rtl.
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && Utilities.isRtl(mContext)) {
-            score = Utilities.getScores(awayGoals, homeGoals);
+            score = Utilities.getScores(mContext, awayGoals, homeGoals);
         } else {
-            score = Utilities.getScores(homeGoals, awayGoals);
+            score = Utilities.getScores(mContext, homeGoals, awayGoals);
         }
 
         // Set the match data onto the list item views.
@@ -193,8 +179,8 @@ public class ScoresWidgetRemoteViewsFactory implements RemoteViewsService.Remote
 
         // Create and set the fill in intent.
         final Intent fillInIntent = new Intent();
-        fillInIntent.putExtra(EXTRA_MATCH_ID, matchId);
-        fillInIntent.putExtra(EXTRA_ITEM_POSITION, i);
+        fillInIntent.putExtra(mContext.getString(R.string.extra_match_id), matchId);
+        fillInIntent.putExtra(mContext.getString(R.string.extra_item_position), i);
         remoteViews.setOnClickFillInIntent(R.id.widget_list_item, fillInIntent);
 
         return remoteViews;
@@ -202,7 +188,7 @@ public class ScoresWidgetRemoteViewsFactory implements RemoteViewsService.Remote
 
     @Override
     public void onDataSetChanged() {
-        Log.d(LOG_TAG, "onDataSetChanged()");
+        Log.d(LOG_TAG, mContext.getString(R.string.on_dataset_changed));
 
         // Check and close cursor.
         if(mCursor != null) {
@@ -215,15 +201,16 @@ public class ScoresWidgetRemoteViewsFactory implements RemoteViewsService.Remote
 
         // Get today's date and convert to string.
         Date todayDate = new Date(System.currentTimeMillis());
-        SimpleDateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT);
+        SimpleDateFormat dateFormat = new SimpleDateFormat(mContext.getString(R.string.date_format));
         String[] dateArray = {dateFormat.format(todayDate)};
 
         // Sort on the time column in ascending order.
-        String sortOrder = DatabaseContract.scores_table.TIME_COL + SORT_ORDER;
+        String sortOrder = ScoresContract.scores_table.TIME_COL +
+                mContext.getString(R.string.ascending_sort_order);
 
         // Query the content provider to fetch today's matches.
         mCursor = mContext.getContentResolver().query(
-                DatabaseContract.scores_table.buildScoreWithDate(),
+                ScoresContract.scores_table.buildScoreWithDate(),
                 SCORES_PROJECTION,
                 null,
                 dateArray,

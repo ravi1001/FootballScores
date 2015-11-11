@@ -28,9 +28,6 @@ public class MainScreenFragment extends Fragment implements LoaderManager.Loader
     private int last_selected_item = -1;
     private ListView mScoresList;
 
-    // Sort order for the query.
-    private static final String SORT_ORDER = " ASC";
-
     public MainScreenFragment()
     {
     }
@@ -47,7 +44,7 @@ public class MainScreenFragment extends Fragment implements LoaderManager.Loader
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              final Bundle savedInstanceState) {
-        Log.d(LOG_TAG, "onCreateView()");
+        Log.d(LOG_TAG, getActivity().getString(R.string.on_create));
 
         update_scores();
         View rootView = inflater.inflate(R.layout.fragment_main, container, false);
@@ -72,14 +69,12 @@ public class MainScreenFragment extends Fragment implements LoaderManager.Loader
     @Override
     public Loader<Cursor> onCreateLoader(int i, Bundle bundle)
     {
-//        return new CursorLoader(getActivity(),DatabaseContract.scores_table.buildScoreWithDate(),
-//                null,null,fragmentdate,null);
-
         // Sort on the time column in ascending order.
-        String sortOrder = DatabaseContract.scores_table.TIME_COL + SORT_ORDER;
+        String sortOrder = ScoresContract.scores_table.TIME_COL +
+                getActivity().getString(R.string.ascending_sort_order);
 
         return new CursorLoader(getActivity(),
-                DatabaseContract.scores_table.buildScoreWithDate(),
+                ScoresContract.scores_table.buildScoreWithDate(),
                 null,
                 null,
                 fragmentdate,
@@ -89,15 +84,7 @@ public class MainScreenFragment extends Fragment implements LoaderManager.Loader
     @Override
     public void onLoadFinished(Loader<Cursor> cursorLoader, Cursor cursor)
     {
-        //Log.v(FetchScoreTask.LOG_TAG,"loader finished");
-        //cursor.moveToFirst();
-        /*
-        while (!cursor.isAfterLast())
-        {
-            Log.v(FetchScoreTask.LOG_TAG,cursor.getString(1));
-            cursor.moveToNext();
-        }
-        */
+        Log.d(LOG_TAG, getActivity().getString(R.string.on_load_finished));
 
         int i = 0;
         cursor.moveToFirst();
@@ -110,12 +97,9 @@ public class MainScreenFragment extends Fragment implements LoaderManager.Loader
         mAdapter.swapCursor(cursor);
         //mAdapter.notifyDataSetChanged();
 
-
-        Log.d(LOG_TAG, "onLoadFinished()");
-
         // Check if widget list item was clicked.
         if(MainActivity.isWidgetItemClicked) {
-            Log.d(LOG_TAG, "onLoadFinished(): Widget item clicked");
+            Log.d(LOG_TAG, getActivity().getString(R.string.on_load_finished_item_clicked));
 
             // Set the match id clicked into the adapter.
             mAdapter.detail_match_id = MainActivity.widgetItemClickedMatchId;

@@ -26,7 +26,6 @@ public class ScoresAdapter extends CursorAdapter
     public static final int COL_ID = 8;
     public static final int COL_MATCHTIME = 2;
     public double detail_match_id = 0;
-    private String FOOTBALL_SCORES_HASHTAG = "#Football_Scores";
     public ScoresAdapter(Context context, Cursor cursor, int flags)
     {
         super(context,cursor,flags);
@@ -59,10 +58,10 @@ public class ScoresAdapter extends CursorAdapter
         String matchScore;
         // Adjust score direction based on whether layout direction is rtl.
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && Utilities.isRtl(context)) {
-            matchScore = Utilities.getScores(cursor.getInt(COL_AWAY_GOALS),
+            matchScore = Utilities.getScores(mContext, cursor.getInt(COL_AWAY_GOALS),
                     cursor.getInt(COL_HOME_GOALS));
         } else {
-            matchScore = Utilities.getScores(cursor.getInt(COL_HOME_GOALS),
+            matchScore = Utilities.getScores(mContext, cursor.getInt(COL_HOME_GOALS),
                     cursor.getInt(COL_AWAY_GOALS));
         }
         mHolder.score.setText(matchScore);
@@ -74,11 +73,11 @@ public class ScoresAdapter extends CursorAdapter
             mHolder.score.setContentDescription(context.getString(R.string.a11y_match_score, matchScore));
         }
         mHolder.match_id = cursor.getDouble(COL_ID);
-        mHolder.home_crest.setImageResource(Utilities.getTeamCrestByTeamName(
+        mHolder.home_crest.setImageResource(Utilities.getTeamCrestByTeamName(mContext,
                 cursor.getString(COL_HOME)));
         mHolder.home_crest.setContentDescription(context.getString(R.string.a11y_home_crest,
                 cursor.getString(COL_HOME)));
-        mHolder.away_crest.setImageResource(Utilities.getTeamCrestByTeamName(
+        mHolder.away_crest.setImageResource(Utilities.getTeamCrestByTeamName(mContext,
                 cursor.getString(COL_AWAY)));
         mHolder.away_crest.setContentDescription(context.getString(R.string.a11y_away_crest,
                 cursor.getString(COL_AWAY)));
@@ -95,14 +94,14 @@ public class ScoresAdapter extends CursorAdapter
             container.addView(v, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT
                     , ViewGroup.LayoutParams.MATCH_PARENT));
             TextView match_day = (TextView) v.findViewById(R.id.matchday_textview);
-            match_day.setText(Utilities.getMatchDay(cursor.getInt(COL_MATCHDAY),
+            match_day.setText(Utilities.getMatchDay(mContext, cursor.getInt(COL_MATCHDAY),
                     cursor.getInt(COL_LEAGUE)));
-            match_day.setContentDescription(Utilities.getMatchDay(cursor.getInt(COL_MATCHDAY),
+            match_day.setContentDescription(Utilities.getMatchDay(mContext, cursor.getInt(COL_MATCHDAY),
                     cursor.getInt(COL_LEAGUE)));
             TextView league = (TextView) v.findViewById(R.id.league_textview);
-            league.setText(Utilities.getLeague(cursor.getInt(COL_LEAGUE)));
+            league.setText(Utilities.getLeague(mContext, cursor.getInt(COL_LEAGUE)));
             league.setContentDescription(context.getString(R.string.a11y_league,
-                    Utilities.getLeague(cursor.getInt(COL_LEAGUE))));
+                    Utilities.getLeague(mContext, cursor.getInt(COL_LEAGUE))));
             Button share_button = (Button) v.findViewById(R.id.share_button);
             share_button.setContentDescription(context.getString(R.string.a11y_share_button));
             share_button.setOnClickListener(new View.OnClickListener() {
@@ -119,14 +118,14 @@ public class ScoresAdapter extends CursorAdapter
         {
             container.removeAllViews();
         }
-
     }
+
     public Intent createShareForecastIntent(String ShareText) {
         Intent shareIntent = new Intent(Intent.ACTION_SEND);
         shareIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_WHEN_TASK_RESET);
-        shareIntent.setType("text/plain");
-        shareIntent.putExtra(Intent.EXTRA_TEXT, ShareText + FOOTBALL_SCORES_HASHTAG);
+        shareIntent.setType(mContext.getString(R.string.intent_type_text_plain));
+        shareIntent.putExtra(Intent.EXTRA_TEXT,
+                ShareText + mContext.getString(R.string.scores_hashtag));
         return shareIntent;
     }
-
 }
