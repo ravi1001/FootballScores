@@ -52,7 +52,6 @@
     <string name="on_create_match_id">onCreate(): Match Id: </string>
     <string name="on_create_position">onCreate(): Position: </string>
     <string name="on_handle_intent">onHandleIntent()</string>
-
     <string name="on_destroy">onDestroy()</string>
     <string name="on_load_finished">onLoadFinished()</string>
     <string name="on_load_finished_item_clicked">onLoadFinished(): Widget item clicked</string>
@@ -116,26 +115,40 @@
     <!-- Ascending sort order for the query -->
     <string name="ascending_sort_order" translatable="false">" ASC"</string>
 
-    <!-- Leagues -->
+    <!-- League codes, non translatable -->
+    <string name="league_code_bundesliga1" translatable="false">394</string>
+    <string name="league_code_bundesliga2" translatable="false">395</string>
+    <string name="league_code_ligue1" translatable="false">396</string>
+    <string name="league_code_ligue2" translatable="false">397</string>
+    <string name="league_code_premier_league" translatable="false">398</string>
+    <string name="league_code_primera_division" translatable="false">399</string>
+    <string name="league_code_segunda_division" translatable="false">400</string>
+    <string name="league_code_serie_a" translatable="false">401</string>
+    <string name="league_code_primeira_liga" translatable="false">402</string>
+    <string name="league_code_bundesliga3" translatable="false">403</string>
+    <string name="league_code_eredivisie" translatable="false">404</string>
+    <string name="league_code_champions_league" translatable="false">405</string>
+
+    <!-- League names -->
+    <string name="league_name_bundesliga1">1. Bundesliga 2015/16</string>
+    <string name="league_name_bundesliga2">2. Bundesliga 2015/16</string>
+    <string name="league_name_ligue1">Ligue 1 2015/16</string>
+    <string name="league_name_ligue2">Ligue 2 2015/16</string>
+    <string name="league_name_premier_league">Premier League 2015/16</string>
+    <string name="league_name_primera_division">Primera Division 2015/16</string>
+    <string name="league_name_segunda_division">Segunda Division 2015/16</string>
+    <string name="league_name_serie_a">Serie A 2015/16</string>
+    <string name="league_name_primeira_liga">Primeira Liga 2015/16</string>
+    <string name="league_name_bundesliga3">3. Bundesliga 2015/16</string>
+    <string name="league_name_eredivisie">Eredivisie 2015/16</string>
+    <string name="league_name_champions_league">Champions League 2015/16</string>
+
     <string name="champions_league">UEFA Champions League</string>
     <string name="bundesliga">Bundesliga</string>
     <string name="premierleague">Premier League</string>
     <string name="primeradivison">Primera Division</string>
     <string name="seriaa">Serie A</string>
     <string name="unknown_league">Unknown League</string>
-
-    <!-- League codes, non translatable -->
-    <string name="bundesliga1" translatable="false">394</string>
-    <string name="bundesliga2" translatable="false">395</string>
-    <string name="ligue1" translatable="false">396</string>
-    <string name="ligue2" translatable="false">397</string>
-    <string name="premier_league" translatable="false">398</string>
-    <string name="primera_division" translatable="false">399</string>
-    <string name="segunda_division" translatable="false">400</string>
-    <string name="serie_a" translatable="false">401</string>
-    <string name="primera_liga" translatable="false">402</string>
-    <string name="bundesliga3" translatable="false">403</string>
-    <string name="eredivisie" translatable="false">404</string>
 
     <!-- Team names, non translatable -->
     <string name="arsenal_london_fc" translatable="false">Arsenal London FC</string>

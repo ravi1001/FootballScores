@@ -10,26 +10,40 @@ import android.view.View;
  */
 public class Utilities
 {
-    public static final int SERIE_A = 357;
-    public static final int PREMIER_LEGAUE = 354;
-    public static final int CHAMPIONS_LEAGUE = 362;
-    public static final int PRIMERA_DIVISION = 358;
-    public static final int BUNDESLIGA = 351;
     public static String getLeague(Context context, int league_num)
     {
-        switch (league_num)
-        {
-            case SERIE_A : return context.getString(R.string.seriaa);
-            case PREMIER_LEGAUE : return context.getString(R.string.premierleague);
-            case CHAMPIONS_LEAGUE : return context.getString(R.string.champions_league);
-            case PRIMERA_DIVISION : return context.getString(R.string.primeradivison);
-            case BUNDESLIGA : return context.getString(R.string.bundesliga);
-            default: return context.getString(R.string.unknown_league);
+        if(league_num == Integer.parseInt(context.getString(R.string.league_code_bundesliga1))) {
+            return context.getString(R.string.league_name_bundesliga1);
+        } else if(league_num == Integer.parseInt(context.getString(R.string.league_code_bundesliga2))) {
+            return context.getString(R.string.league_name_bundesliga2);
+        } else if(league_num == Integer.parseInt(context.getString(R.string.league_code_ligue1))) {
+            return context.getString(R.string.league_name_ligue1);
+        } else if(league_num == Integer.parseInt(context.getString(R.string.league_code_ligue2))) {
+            return context.getString(R.string.league_name_ligue2);
+        } else if(league_num == Integer.parseInt(context.getString(R.string.league_code_premier_league))) {
+            return context.getString(R.string.league_name_premier_league);
+        } else if(league_num == Integer.parseInt(context.getString(R.string.league_code_primera_division))) {
+            return context.getString(R.string.league_name_primera_division);
+        } else if(league_num == Integer.parseInt(context.getString(R.string.league_code_segunda_division))) {
+            return context.getString(R.string.league_name_segunda_division);
+        } else if(league_num == Integer.parseInt(context.getString(R.string.league_code_serie_a))) {
+            return context.getString(R.string.league_name_serie_a);
+        } else if(league_num == Integer.parseInt(context.getString(R.string.league_code_primeira_liga))) {
+            return context.getString(R.string.league_name_primeira_liga);
+        } else if(league_num == Integer.parseInt(context.getString(R.string.league_code_bundesliga3))) {
+            return context.getString(R.string.league_name_bundesliga3);
+        } else if(league_num == Integer.parseInt(context.getString(R.string.league_code_eredivisie))) {
+            return context.getString(R.string.league_name_eredivisie);
+        } else if(league_num == Integer.parseInt(context.getString(R.string.league_code_champions_league))) {
+            return context.getString(R.string.league_name_champions_league);
+        } else {
+            return context.getString(R.string.unknown_league);
         }
     }
-    public static String getMatchDay(Context context, int match_day,int league_num)
+
+    public static String getMatchDay(Context context, int match_day, int league_num)
     {
-        if(league_num == CHAMPIONS_LEAGUE)
+        if(league_num == Integer.parseInt(context.getString(R.string.league_code_champions_league)))
         {
             if (match_day <= 6)
             {
