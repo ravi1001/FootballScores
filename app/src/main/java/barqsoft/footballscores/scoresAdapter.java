@@ -16,16 +16,17 @@ import android.widget.TextView;
  */
 public class ScoresAdapter extends CursorAdapter
 {
+    public double detail_match_id = 0;
+    public static final int COL_DATE = 1;
+    public static final int COL_MATCHTIME = 2;
     public static final int COL_HOME = 3;
     public static final int COL_AWAY = 4;
+    public static final int COL_LEAGUE = 5;
     public static final int COL_HOME_GOALS = 6;
     public static final int COL_AWAY_GOALS = 7;
-    public static final int COL_DATE = 1;
-    public static final int COL_LEAGUE = 5;
-    public static final int COL_MATCHDAY = 9;
     public static final int COL_ID = 8;
-    public static final int COL_MATCHTIME = 2;
-    public double detail_match_id = 0;
+    public static final int COL_MATCHDAY = 9;
+
     public ScoresAdapter(Context context, Cursor cursor, int flags)
     {
         super(context,cursor,flags);
@@ -54,7 +55,6 @@ public class ScoresAdapter extends CursorAdapter
         mHolder.date.setText(cursor.getString(COL_MATCHTIME));
         mHolder.date.setContentDescription(context.getString(R.string.a11y_match_time,
                 cursor.getString(COL_MATCHTIME)));
-
         String matchScore;
         // Adjust score direction based on whether layout direction is rtl.
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1 && Utilities.isRtl(context)) {

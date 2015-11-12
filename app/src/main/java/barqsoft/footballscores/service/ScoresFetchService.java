@@ -55,7 +55,7 @@ public class ScoresFetchService extends IntentService
 
         Uri fetch_build = Uri.parse(BASE_URL).buildUpon().
                 appendQueryParameter(QUERY_TIME_FRAME, timeFrame).build();
-        //Log.v(LOG_TAG, "The url we are looking at is: "+fetch_build.toString()); //log spam
+
         HttpURLConnection m_connection = null;
         BufferedReader reader = null;
         String JSON_data = null;
@@ -182,7 +182,6 @@ public class ScoresFetchService extends IntentService
             Vector<ContentValues> values = new Vector <ContentValues> (matches.length());
             for(int i = 0;i < matches.length();i++)
             {
-
                 JSONObject match_data = matches.getJSONObject(i);
                 League = match_data.getJSONObject(LINKS).getJSONObject(SOCCER_SEASON).
                         getString(getString(R.string.href));
@@ -242,6 +241,8 @@ public class ScoresFetchService extends IntentService
                     Home_goals = match_data.getJSONObject(RESULT).getString(HOME_GOALS);
                     Away_goals = match_data.getJSONObject(RESULT).getString(AWAY_GOALS);
                     match_day = match_data.getString(MATCH_DAY);
+
+                    // Put match data into content values.
                     ContentValues match_values = new ContentValues();
                     match_values.put(ScoresContract.scores_table.MATCH_ID,match_id);
                     match_values.put(ScoresContract.scores_table.DATE_COL,mDate);
@@ -261,11 +262,8 @@ public class ScoresFetchService extends IntentService
             inserted_data = mContext.getContentResolver().bulkInsert(
                     ScoresContract.BASE_CONTENT_URI,insert_data);
 
-            //Log.v(LOG_TAG,"Succesfully Inserted : " + String.valueOf(inserted_data));
-
             // Send local broadcast notifying that the data has been updated.
             sendDataUpdatedBroadcast();
-
         }
         catch (JSONException e)
         {

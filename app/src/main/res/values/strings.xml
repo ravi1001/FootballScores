@@ -75,7 +75,7 @@
     <string name="timeframe_n2" translatable="false">n2</string>
     <string name="timeframe_p2" translatable="false">p2</string>
     <string name="query_base_url" translatable="false">http://api.football-data.org/alpha/fixtures</string>
-    <string name="query_timeframe" translatable="false">timeFrame</string>
+    <string name="query_timeframe" translatable="false">timeframe</string>
     <string name="get_request" translatable="false">GET</string>
     <string name="x_auth_token" translatable="false">X-Auth-Token</string>
     <string name="fixtures" translatable="false">fixtures</string>
